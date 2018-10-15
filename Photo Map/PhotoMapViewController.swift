@@ -9,8 +9,8 @@
 import UIKit
 import MapKit
 
-class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
+class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, LocationViewControllerDelegate, MKMapViewDelegate {
+
     @IBOutlet weak var mapView: MKMapView!
     let sfRegion = MKCoordinateRegionMake(CLLocationCoordinate2DMake(37.783333, -122.416667), MKCoordinateSpanMake(0.1, 0.1))
     var chosenImage: UIImage!
@@ -19,13 +19,38 @@ class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate,
         super.viewDidLoad()
         
         mapView.setRegion(sfRegion, animated: false)
-        
     }
+    
+    func locationsPickedLocation(controller: LocationsViewController, latitude: NSNumber, longitude: NSNumber) {
+        self.navigationController?.popToViewController(self, animated: true)
+        let locationCoordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = locationCoordinate
+        annotation.title = "Picture!"
+        mapView.addAnnotation(annotation)
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        let reuseID = "myAnnotationView"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseID)
+
+        if (annotationView == nil) {
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
+            annotationView!.canShowCallout = true
+            annotationView!.leftCalloutAccessoryView = UIImageView(frame: CGRect(x:0, y:0, width: 50, height:50))
+        }
+
+        let imageView = annotationView?.leftCalloutAccessoryView as! UIImageView
+        imageView.image = UIImage(named: "camera")
+
+        return annotationView
+    }
+    
     @IBAction func onCamera(_ sender: Any) {
         let vc = UIImagePickerController()
         vc.delegate = self
         vc.allowsEditing = true
-//        vc.sourceType = UIImagePickerControllerSourceType.camera
         
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             let alertController = UIAlertController()
@@ -48,7 +73,6 @@ class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate,
             alertController.addAction(cancel)
             
             self.present(alertController, animated: true)
-
         }else{
             vc.sourceType = .photoLibrary
         }
@@ -56,13 +80,11 @@ class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        // Get the image captured by the UIImagePickerController
         let originalImage = info[UIImagePickerControllerOriginalImage] as! UIImage
 //        let editedImage = info[UIImagePickerControllerEditedImage] as! UIImage
         
         self.chosenImage = originalImage
         
-//        dismiss(animated: true, completion: nil)
         dismiss(animated: true) {
             self.performSegue(withIdentifier: "tagSegue", sender: self)
         }
@@ -70,8 +92,9 @@ class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate,
 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let locationsViewController = segue.destination as? LocationsViewController{
+            locationsViewController.delegate = self as LocationViewControllerDelegate
+        }
     }
     
 
