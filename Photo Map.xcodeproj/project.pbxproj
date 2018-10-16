@@ -16,6 +16,7 @@
 		228D476519F5DAA000DE9903 /* Photo_MapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228D476419F5DAA000DE9903 /* Photo_MapTests.swift */; };
 		228D477019F5DAFF00DE9903 /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228D476F19F5DAFF00DE9903 /* LocationsViewController.swift */; };
 		22BB9BD519F5DD21000048C2 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BB9BD419F5DD21000048C2 /* LocationCell.swift */; };
+		6EA1386A21753CA30034B10B /* PhotoAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA1386921753CA30034B10B /* PhotoAnnotation.swift */; };
 		6EDF97FB2173051D002144FF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EDF97FA2173051C002144FF /* MapKit.framework */; };
 		C0BB236311B5B261447DED51 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12B190D8026AA9DA033871B1 /* Pods.framework */; };
 /* End PBXBuildFile section */
@@ -47,6 +48,7 @@
 		228D476F19F5DAFF00DE9903 /* LocationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsViewController.swift; sourceTree = "<group>"; };
 		22BB9BD419F5DD21000048C2 /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		3798A91E53EF9F5C294484AF /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		6EA1386921753CA30034B10B /* PhotoAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAnnotation.swift; sourceTree = "<group>"; };
 		6EDF97FA2173051C002144FF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		F5BE47FFEDE0C18F03BCCC32 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,6 +76,7 @@
 		228D474019F5DA9F00DE9903 = {
 			isa = PBXGroup;
 			children = (
+				6EA1386921753CA30034B10B /* PhotoAnnotation.swift */,
 				228D474B19F5DA9F00DE9903 /* Photo Map */,
 				228D476119F5DAA000DE9903 /* Photo MapTests */,
 				228D474A19F5DA9F00DE9903 /* Products */,
@@ -328,6 +331,7 @@
 				228D474F19F5DA9F00DE9903 /* AppDelegate.swift in Sources */,
 				11D16EF31BD08AAE00B6CBFE /* PhotoMapViewController.swift in Sources */,
 				228D477019F5DAFF00DE9903 /* LocationsViewController.swift in Sources */,
+				6EA1386A21753CA30034B10B /* PhotoAnnotation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
